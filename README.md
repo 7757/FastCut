@@ -4,6 +4,8 @@ A lightweight native **macOS clipboard-history manager** — a small, no-frills 
 tools like Maccy / Flycut. Lives in the menu bar, remembers what you copy, and brings the
 history back with a global hotkey.
 
+![FastCut clipboard popup](docs/popup.png)
+
 ## Features
 
 - **Clipboard history** for text, images, and copied file paths
