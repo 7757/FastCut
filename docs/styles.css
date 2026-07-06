@@ -241,6 +241,7 @@ footer { padding: 60px 0 40px; }
 .foot-col h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: 14px; }
 .foot-col a { display: block; color: var(--ink-2); font-size: 15px; margin-bottom: 10px; transition: color .15s; }
 .foot-col a:hover { color: var(--brand-3); }
+.copyright .visits #visits-n { color: var(--ink-2); font-weight: 700; }
 .copyright { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
 
 /* Feature marquee — continuous, seamless auto-scroll */
