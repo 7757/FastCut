@@ -1,5 +1,7 @@
 # FastCut
 
+**English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+
 A lightweight native **macOS clipboard-history manager** — a small, no-frills alternative to
 tools like Maccy / Flycut. Lives in the menu bar, remembers what you copy, and brings the
 history back with a global hotkey.
@@ -7,6 +9,24 @@ history back with a global hotkey.
 **🌐 [Website](https://7757.github.io/FastCut/) · ⬇️ [Download](https://github.com/7757/FastCut/releases/latest)**
 
 ![FastCut clipboard popup](docs/popup.png)
+
+## ⚡ Installation
+
+**One-line install** — downloads the latest release, installs it to `/Applications`, and launches it:
+
+```sh
+curl -fsSL https://7757.github.io/FastCut/install.sh | bash
+```
+
+**Homebrew:**
+
+```sh
+brew install --cask 7757/fastcut/fastcut
+```
+
+**Manual** — grab the latest `.app` from [Releases](https://github.com/7757/FastCut/releases/latest), move it to `/Applications`, then **right-click → Open** on first launch (the app is self-signed, not notarized).
+
+**From source** — see [Build](#build) below.
 
 ## Features
 
@@ -18,7 +38,7 @@ history back with a global hotkey.
 - **Menu-bar quick access** to the 8 most recent items
 - **Privacy**: entries marked concealed/transient by password managers are ignored automatically
 - **Persistent** across launches; configurable history size; optional **launch at login**
-- Menu-bar only (no Dock icon), ad-hoc signed, zero third-party dependencies
+- Menu-bar only (no Dock icon), self-contained, zero third-party dependencies
 
 ## Requirements
 

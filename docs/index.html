@@ -66,15 +66,17 @@
       <h2>小而快,恰到好处</h2>
       <p>该有的一个不少,多余的一个不加。对标市面主流剪贴板工具,只留最常用的。</p>
     </div>
-    <div class="grid">
-      <div class="card reveal"><div class="ic">⚡</div><h3>全局快捷键</h3><p>任意界面按 ⌘⇧V 唤起历史,快捷键可在偏好设置里自定义。</p></div>
-      <div class="card reveal"><div class="ic">🎯</div><h3>智能类型识别</h3><p>链接、邮箱、文件路径、颜色值、数字自动分辨,各有专属图标。</p></div>
-      <div class="card reveal"><div class="ic">⌨️</div><h3>键盘全操作</h3><p>输入即搜索,方向键选择,回车粘贴 —— 双手不离键盘。</p></div>
-      <div class="card reveal"><div class="ic">📋</div><h3>自动回贴</h3><p>选中即自动粘回你刚才所在的应用(需辅助功能权限)。</p></div>
-      <div class="card reveal"><div class="ic">🖼️</div><h3>文本 · 图片 · 文件</h3><p>复制什么都记得住,图片和复制的文件路径也一并保存。</p></div>
-      <div class="card reveal"><div class="ic">🔒</div><h3>隐私优先</h3><p>自动忽略密码管理器标记的敏感内容,历史只存在你本机。</p></div>
-      <div class="card reveal"><div class="ic">🪶</div><h3>原生轻量</h3><p>纯 Swift 打造,零第三方依赖,常驻菜单栏,几乎不占资源。</p></div>
-      <div class="card reveal"><div class="ic">🧩</div><h3>开源免费</h3><p>MIT 协议,代码完全公开,欢迎 Star、提 Issue 或自己动手改。</p></div>
+  </div>
+  <div class="marquee reveal">
+    <div class="marquee-track" id="ftrack">
+      <article class="fcard"><h3>全局快捷键</h3><p>任意界面按 ⌘⇧V 唤起历史,快捷键可在偏好设置里自定义。</p></article>
+      <article class="fcard"><h3>智能类型识别</h3><p>链接、邮箱、文件路径、颜色值、数字自动分辨,一眼看清。</p></article>
+      <article class="fcard"><h3>键盘全操作</h3><p>输入即搜索,方向键选择,回车粘贴 —— 双手不离键盘。</p></article>
+      <article class="fcard"><h3>自动回贴</h3><p>选中即自动粘回你刚才所在的应用(需辅助功能权限)。</p></article>
+      <article class="fcard"><h3>文本 · 图片 · 文件</h3><p>复制什么都记得住,图片和复制的文件路径也一并保存。</p></article>
+      <article class="fcard"><h3>隐私优先</h3><p>自动忽略密码管理器标记的敏感内容,历史只存在你本机。</p></article>
+      <article class="fcard"><h3>原生轻量</h3><p>纯 Swift 打造,零第三方依赖,常驻菜单栏,几乎不占资源。</p></article>
+      <article class="fcard"><h3>开源免费</h3><p>MIT 协议,代码完全公开,欢迎 Star、提 Issue 或自己动手改。</p></article>
     </div>
   </div>
 </section>
@@ -109,11 +111,18 @@
       <img class="os" src="assets/icon-192.png" alt="FastCut">
       <h3>FastCut for macOS</h3>
       <div class="req">macOS 14 或更高 · Apple Silicon</div>
-      <div class="actions">
-        <a class="btn btn-primary btn-lg" href="https://github.com/7757/FastCut/releases/latest" target="_blank" rel="noopener">下载最新版</a>
-        <a class="btn btn-ghost btn-lg" href="https://github.com/7757/FastCut#build" target="_blank" rel="noopener">从源码构建</a>
+
+      <div class="cmd">
+        <code id="install-cmd">curl -fsSL https://7757.github.io/FastCut/install.sh | bash</code>
+        <button class="copy-btn" id="copy-btn" type="button">复制</button>
       </div>
-      <p class="note">应用为自签名,首次打开请<strong>右键点按 App → 选「打开」</strong>。或用 <code>./build.sh</code> 自行编译。</p>
+      <div class="or"><span>或</span></div>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://github.com/7757/FastCut/releases/latest" target="_blank" rel="noopener">下载 .app</a>
+        <a class="btn btn-ghost" href="https://github.com/7757/FastCut#-installation" target="_blank" rel="noopener">Homebrew</a>
+        <a class="btn btn-ghost" href="https://github.com/7757/FastCut#build" target="_blank" rel="noopener">源码构建</a>
+      </div>
+      <p class="note">一行命令自动下载、安装并启动。手动下载 .app 时,首次打开请<strong>右键 → 打开</strong>(应用为自签名)。</p>
     </div>
   </div>
 </section>
@@ -155,16 +164,20 @@
     </div>
     <div class="copyright">
       <span>© <span id="year">2026</span> FastCut · 基于 MIT 协议开源</span>
-      <span>设计致敬腾讯马维斯,与其无任何关联 · Made with ⚡</span>
+      <span><a href="https://github.com/7757/FastCut" target="_blank" rel="noopener">GitHub</a></span>
     </div>
   </div>
 </footer>
 
 <script>
-  // nav shadow on scroll
+  // frosted nav "develops" in after scrolling begins
   const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 16);
   onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  // duplicate marquee cards so the auto-scroll loops seamlessly
+  const track = document.getElementById('ftrack');
+  if (track) { track.setAttribute('aria-hidden', 'false'); track.innerHTML += track.innerHTML; }
 
   // reveal on view
   const io = new IntersectionObserver((entries) => {
@@ -175,6 +188,15 @@
   document.querySelectorAll('.reveal').forEach((el, i) => {
     el.style.transitionDelay = (Math.min(i % 8, 6) * 45) + 'ms';
     io.observe(el);
+  });
+
+  // copy install command
+  const copyBtn = document.getElementById('copy-btn');
+  if (copyBtn) copyBtn.addEventListener('click', () => {
+    const cmd = document.getElementById('install-cmd').textContent;
+    navigator.clipboard.writeText(cmd).then(() => {
+      copyBtn.textContent = '已复制'; setTimeout(() => copyBtn.textContent = '复制', 1500);
+    }).catch(() => {});
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();
