@@ -12,16 +12,13 @@ echo "${BOLT}  Installing FastCut…"
 
 TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
 
-echo "→ Finding the latest release"
-URL="$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" \
-  | grep -o 'https://[^"]*macOS\.zip' | head -1)"
-if [ -z "${URL:-}" ]; then
-  echo "✗ Could not find a download. Get it manually: https://github.com/${REPO}/releases"
+# Stable asset name → no API call, no rate limits.
+URL="https://github.com/${REPO}/releases/latest/download/FastCut-macOS.zip"
+echo "↓ Downloading the latest release"
+if ! curl -fL# "$URL" -o "$TMP/FastCut.zip"; then
+  echo "✗ Download failed. Get it manually: https://github.com/${REPO}/releases"
   exit 1
 fi
-
-echo "↓ Downloading  ${URL##*/}"
-curl -fL# "$URL" -o "$TMP/FastCut.zip"
 
 echo "→ Unpacking"
 ditto -x -k "$TMP/FastCut.zip" "$TMP/unpack"
