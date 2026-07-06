@@ -60,18 +60,29 @@ img { max-width: 100%; display: block; }
 
 /* Nav */
 .nav {
-  position: fixed; inset: 0 0 auto 0; z-index: 50; height: 64px;
-  display: flex; align-items: center;
-  background: transparent; border-bottom: 1px solid transparent;
-  transition: background .4s ease, backdrop-filter .4s ease, border-color .4s ease, box-shadow .4s ease;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; justify-content: center;
+  padding: 16px 16px;
+  pointer-events: none;                 /* only the bar itself is clickable */
+  transition: padding .35s ease;
 }
-/* Frosted bar "develops" in only after you start scrolling. */
-.nav.scrolled {
-  background: rgba(255,255,255,.72);
-  backdrop-filter: saturate(180%) blur(14px);
-  -webkit-backdrop-filter: saturate(180%) blur(14px);
-  border-bottom-color: var(--line);
-  box-shadow: 0 8px 30px -22px rgba(16,18,24,.55);
+.nav .wrap {
+  width: 100%; max-width: var(--maxw); pointer-events: auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 12px 9px 20px;
+  border: 1px solid transparent; border-radius: 16px;
+  transition: max-width .45s cubic-bezier(.2,.7,.2,1), background .35s ease,
+              border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
+}
+/* On scroll the bar condenses into a light floating island. */
+.nav.scrolled { padding-top: 10px; }
+.nav.scrolled .wrap {
+  max-width: 940px;
+  background: rgba(255,255,255,.7);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-color: rgba(230,232,240,.9);
+  box-shadow: 0 14px 44px -16px rgba(20,20,50,.26);
 }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; letter-spacing: -.02em; }
