@@ -38,6 +38,9 @@ final class Settings: ObservableObject {
         didSet { d.set(launchAtLogin, forKey: Keys.launchAtLogin)
                  LoginItem.set(launchAtLogin) }
     }
+    @Published var checkForUpdates: Bool {
+        didSet { d.set(checkForUpdates, forKey: Keys.checkForUpdates) }
+    }
 
     private enum Keys {
         static let hotKeyCode = "hotKeyCode"
@@ -45,6 +48,7 @@ final class Settings: ObservableObject {
         static let maxHistory = "maxHistory"
         static let autoPaste = "autoPaste"
         static let launchAtLogin = "launchAtLogin"
+        static let checkForUpdates = "checkForUpdates"
     }
 
     private init() {
@@ -54,11 +58,13 @@ final class Settings: ObservableObject {
             Keys.maxHistory: 100,
             Keys.autoPaste: true,
             Keys.launchAtLogin: false,
+            Keys.checkForUpdates: true,
         ])
         hotKeyCode = UInt32(d.integer(forKey: Keys.hotKeyCode))
         hotKeyModifiers = UInt32(d.integer(forKey: Keys.hotKeyModifiers))
         maxHistory = d.integer(forKey: Keys.maxHistory)
         autoPaste = d.bool(forKey: Keys.autoPaste)
         launchAtLogin = d.bool(forKey: Keys.launchAtLogin)
+        checkForUpdates = d.bool(forKey: Keys.checkForUpdates)
     }
 }

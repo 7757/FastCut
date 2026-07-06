@@ -10,6 +10,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var lastGoodCode: UInt32 = 0
     private var lastGoodModifiers: UInt32 = 0
     private var didPromptAccessibility = false
+    private var updateVersion: String?
+    private var updateURL: String?
+    private var updateTimer: Timer?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         store = HistoryStore()
@@ -36,6 +39,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
         // Keep the login-item state in sync with the stored preference.
         if Settings.shared.launchAtLogin { LoginItem.set(true) }
+
+        // Check for updates on launch and periodically (every 6 hours).
+        if Settings.shared.checkForUpdates {
+            checkForUpdates(userInitiated: false)
+            let t = Timer(timeInterval: 6 * 3600, repeats: true) { [weak self] _ in
+                guard Settings.shared.checkForUpdates else { return }
+                self?.checkForUpdates(userInitiated: false)
+            }
+            RunLoop.main.add(t, forMode: .common)
+            updateTimer = t
+        }
     }
 
     private func registerHotKey() {
@@ -62,19 +76,42 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     private func setupStatusItem() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        if let button = statusItem.button {
-            let image = NSImage(systemSymbolName: "bolt.fill",
-                                accessibilityDescription: "FastCut")
-            image?.isTemplate = true   // black on light menu bars, white on dark
-            button.image = image
-        }
+        refreshStatusIcon()
         let menu = NSMenu()
         menu.delegate = self
         statusItem.menu = menu
     }
 
+    private func refreshStatusIcon() {
+        guard let button = statusItem?.button else { return }
+        let image = NSImage(systemSymbolName: "bolt.fill", accessibilityDescription: "FastCut")
+        image?.isTemplate = true   // black on light menu bars, white on dark
+        button.image = image
+        // Small orange badge dot beside the bolt when an update is available.
+        if updateVersion != nil {
+            button.attributedTitle = NSAttributedString(string: " ●", attributes: [
+                .foregroundColor: NSColor.systemOrange,
+                .font: NSFont.systemFont(ofSize: 9),
+            ])
+        } else {
+            button.title = ""
+        }
+    }
+
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.removeAllItems()
+
+        if let v = updateVersion {
+            let up = NSMenuItem(title: "有新版本 \(v),点击更新",
+                                action: #selector(openUpdatePage), keyEquivalent: "")
+            up.target = self
+            up.attributedTitle = NSAttributedString(string: "⬆︎  有新版本 \(v),点击更新", attributes: [
+                .foregroundColor: NSColor.systemOrange,
+                .font: NSFont.boldSystemFont(ofSize: NSFont.systemFontSize),
+            ])
+            menu.addItem(up)
+            menu.addItem(.separator())
+        }
 
         let shortcut = ShortcutFormatter.string(keyCode: Settings.shared.hotKeyCode,
                                                 modifiers: Settings.shared.hotKeyModifiers)
@@ -123,6 +160,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                               action: #selector(openPreferences), keyEquivalent: ",")
         pref.target = self
         menu.addItem(pref)
+        let cu = NSMenuItem(title: "Check for Updates…",
+                            action: #selector(checkUpdatesMenu), keyEquivalent: "")
+        cu.target = self
+        menu.addItem(cu)
         menu.addItem(.separator())
         menu.addItem(NSMenuItem(title: "Quit FastCut",
                                 action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
@@ -154,6 +195,55 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     @objc private func openPreferences() { prefs.show() }
 
     @objc private func enableAccessibility() { Paster.requestAccessibility() }
+
+    // MARK: Updates
+
+    @objc private func openUpdatePage() {
+        let link = updateURL ?? "https://7757.github.io/FastCut/"
+        if let url = URL(string: link) { NSWorkspace.shared.open(url) }
+    }
+
+    @objc private func checkUpdatesMenu() { checkForUpdates(userInitiated: true) }
+
+    private func checkForUpdates(userInitiated: Bool) {
+        UpdateChecker.shared.check(userInitiated: userInitiated) { [weak self] outcome in
+            guard let self else { return }
+            switch outcome {
+            case .updateAvailable(let v, let url):
+                self.updateVersion = v
+                self.updateURL = url
+                self.refreshStatusIcon()
+                if userInitiated { self.promptDownload(version: v, url: url) }
+            case .upToDate(let cur):
+                self.updateVersion = nil
+                self.updateURL = nil
+                self.refreshStatusIcon()
+                if userInitiated { self.infoAlert("已是最新版本", "当前 \(cur) 版本已是最新。") }
+            case .failed:
+                if userInitiated { self.infoAlert("检查更新失败", "无法连接到 GitHub,请稍后再试。") }
+            }
+        }
+    }
+
+    private func promptDownload(version: String, url: String) {
+        NSApp.activate(ignoringOtherApps: true)
+        let alert = NSAlert()
+        alert.messageText = "发现新版本 \(version)"
+        alert.informativeText = "当前版本 \(UpdateChecker.shared.currentVersion)。前往下载最新版?"
+        alert.addButton(withTitle: "前往下载")
+        alert.addButton(withTitle: "稍后")
+        if alert.runModal() == .alertFirstButtonReturn, let u = URL(string: url) {
+            NSWorkspace.shared.open(u)
+        }
+    }
+
+    private func infoAlert(_ title: String, _ msg: String) {
+        NSApp.activate(ignoringOtherApps: true)
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.informativeText = msg
+        alert.runModal()
+    }
 
     // MARK: Paste flow
 

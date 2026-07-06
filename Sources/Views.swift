@@ -287,6 +287,7 @@ struct PreferencesView: View {
                     Text("Keep the last \(settings.maxHistory) items")
                 }
                 Toggle("Launch at login", isOn: $settings.launchAtLogin)
+                Toggle("Automatically check for updates", isOn: $settings.checkForUpdates)
             }
             Section {
                 Button("Clear History", role: .destructive) { store.clear() }
