@@ -37,7 +37,7 @@
       cta_h2: "Make copy-paste lightning fast.", cta_p: "Free, open source, native. Give your Mac a smarter clipboard.",
       foot_tag: "Native, lightweight, open-source clipboard-history manager for macOS.",
       foot_author: "By musk", foot_product: "Product", foot_source: "Source",
-      foot_repo: "Repository", foot_license: "MIT License", foot_copyright: "Open-source under MIT", visits_label: "views",
+      foot_repo: "Repository", foot_license: "MIT License", foot_copyright: "Open-source under MIT", visits_label: "views", stat_views: "views", stat_visitors: "visitors",
     },
     zh: {
       nav_features: "功能", nav_shortcuts: "快捷键", nav_changelog: "更新日志", nav_download: "下载",
@@ -75,7 +75,7 @@
       cta_h2: "让复制粘贴,快如闪电。", cta_p: "免费、开源、原生。给你的 Mac 装上更聪明的剪贴板。",
       foot_tag: "原生、轻量、开源的 macOS 剪贴板历史管理器。",
       foot_author: "作者 · musk", foot_product: "产品", foot_source: "源码",
-      foot_repo: "GitHub 仓库", foot_license: "MIT 许可证", foot_copyright: "基于 MIT 协议开源", visits_label: "次访问",
+      foot_repo: "GitHub 仓库", foot_license: "MIT 许可证", foot_copyright: "基于 MIT 协议开源", visits_label: "次访问", stat_views: "浏览量", stat_visitors: "访客",
     },
     ja: {
       nav_features: "機能", nav_shortcuts: "ショートカット", nav_changelog: "変更履歴", nav_download: "ダウンロード",
@@ -113,7 +113,7 @@
       cta_h2: "コピペを、稲妻の速さに。", cta_p: "無料・オープンソース・ネイティブ。あなたの Mac に賢いクリップボードを。",
       foot_tag: "ネイティブで軽量、オープンソースの macOS クリップボード履歴マネージャー。",
       foot_author: "作者 · musk", foot_product: "製品", foot_source: "ソース",
-      foot_repo: "リポジトリ", foot_license: "MIT ライセンス", foot_copyright: "MIT ライセンスで公開", visits_label: "アクセス",
+      foot_repo: "リポジトリ", foot_license: "MIT ライセンス", foot_copyright: "MIT ライセンスで公開", visits_label: "アクセス", stat_views: "ビュー", stat_visitors: "訪問者",
     },
     ko: {
       nav_features: "기능", nav_shortcuts: "단축키", nav_changelog: "변경 이력", nav_download: "다운로드",
@@ -151,7 +151,7 @@
       cta_h2: "복사-붙여넣기를, 번개처럼.", cta_p: "무료·오픈소스·네이티브. 당신의 Mac에 더 똑똑한 클립보드를.",
       foot_tag: "네이티브하고 가벼운 오픈소스 macOS 클립보드 기록 관리자.",
       foot_author: "제작 · musk", foot_product: "제품", foot_source: "소스",
-      foot_repo: "저장소", foot_license: "MIT 라이선스", foot_copyright: "MIT 라이선스로 공개", visits_label: "조회",
+      foot_repo: "저장소", foot_license: "MIT 라이선스", foot_copyright: "MIT 라이선스로 공개", visits_label: "조회", stat_views: "조회수", stat_visitors: "방문자",
     },
   };
 
@@ -173,6 +173,7 @@
       b.classList.toggle("active", b.getAttribute("data-lang") === lang)
     );
     try { localStorage.setItem("fc_lang", lang); } catch (e) {}
+    if (typeof renderStat === "function") renderStat();
   }
 
   function detectLang() {
@@ -185,7 +186,33 @@
   }
 
   window.fcApplyLang = applyLang;   // also usable from the console
+
+  // --- site stats (GoatCounter): toggle total pageviews / unique visitors ---
+  var statData = { views: null, visitors: null, metric: "views" };
+  function renderStat() {
+    var el = document.getElementById("stat");
+    if (!el) return;
+    var v = statData[statData.metric];
+    if (v == null) return;                       // not loaded yet
+    var d = I18N[window.__fcLang] || I18N.en;
+    document.getElementById("stat-num").textContent = v;
+    document.getElementById("stat-label").textContent =
+      statData.metric === "views" ? d.stat_views : d.stat_visitors;
+    el.hidden = false;
+  }
+  var statEl = document.getElementById("stat");
+  if (statEl) statEl.addEventListener("click", function () {
+    statData.metric = statData.metric === "views" ? "visitors" : "views";
+    renderStat();
+  });
+
   applyLang(detectLang());
+
+  // all-time counts from the GoatCounter public counter (hidden if unavailable)
+  fetch("https://musk-lai.goatcounter.com/counter/TOTAL.json")
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+    .then(function (d) { statData.views = d.count; statData.visitors = d.count_unique; renderStat(); })
+    .catch(function () {});
 
   // switcher
   const box = document.getElementById("lang");

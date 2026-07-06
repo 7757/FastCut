@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 
@@ -64,6 +64,10 @@
       </a>
     </div>
     <p class="meta reveal" data-i18n="hero_meta">适用于 macOS 14 或更高 · Apple Silicon · 免费</p>
+    <button class="stat reveal" id="stat" type="button" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span id="stat-num">–</span> <span id="stat-label"></span>
+    </button>
 
     <div class="shot reveal">
       <img src="popup.png" alt="FastCut clipboard popup" width="900">
@@ -217,7 +221,6 @@
     </div>
     <div class="copyright">
       <span>© <span id="year">2026</span> FastCut · <span data-i18n="foot_copyright">基于 MIT 协议开源</span></span>
-      <span class="visits" id="visits" hidden><span id="visits-n"></span> <span data-i18n="visits_label">次访问</span></span>
       <span><a href="https://github.com/7757/FastCut" target="_blank" rel="noopener">GitHub</a></span>
     </div>
   </div>
@@ -255,18 +258,10 @@
         document.getElementById('dl-count').hidden = false;
       }
     }).catch(function () {});
-
-  // live site visits from GoatCounter (needs the "visitor counter" setting enabled; hidden otherwise)
-  fetch('https://musklai7757.goatcounter.com/counter/TOTAL.json')
-    .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
-    .then(function (d) {
-      var n = d.count_unique || d.count;
-      if (n) { document.getElementById('visits-n').textContent = n; document.getElementById('visits').hidden = false; }
-    }).catch(function () {});
 </script>
-<script src="i18n.js?v=8"></script>
+<script src="i18n.js?v=9"></script>
 <!-- Privacy-friendly analytics (GoatCounter) -->
-<script data-goatcounter="https://musklai7757.goatcounter.com/count"
+<script data-goatcounter="https://musk-lai.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

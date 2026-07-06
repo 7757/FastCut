@@ -136,6 +136,16 @@ img { max-width: 100%; display: block; }
 .hero p.sub { max-width: 640px; margin: 22px auto 0; font-size: clamp(16px,2.2vw,19px); color: var(--muted); }
 .hero .actions { display: flex; gap: 14px; justify-content: center; margin-top: 34px; flex-wrap: wrap; }
 .hero .meta { margin-top: 18px; font-size: 13px; color: var(--muted); }
+.stat {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; cursor: pointer;
+  padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: #fff;
+  box-shadow: var(--shadow-sm); font-size: 14px; font-weight: 600; color: var(--ink-2);
+  transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+.stat:hover { border-color: #d7dae3; transform: translateY(-1px); box-shadow: 0 10px 24px -12px rgba(20,20,40,.28); }
+.stat svg { width: 16px; height: 16px; color: var(--brand-3); }
+.stat #stat-num { color: var(--ink); font-weight: 800; }
+.stat #stat-label { color: var(--muted); font-weight: 500; }
 
 .shot { margin: 64px auto 0; max-width: 900px; position: relative; }
 .shot::before {
