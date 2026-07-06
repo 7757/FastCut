@@ -78,6 +78,7 @@ struct HistoryView: View {
     private var footer: some View {
         HStack(spacing: 14) {
             hint("↩", "Paste")
+            hint("⌘1–9", "Quick")
             hint("⌘⇧⌫", "Delete")
             hint("⎋", "Close")
             Spacer()

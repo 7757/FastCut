@@ -3,6 +3,11 @@
 All notable changes to FastCut are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/); versions follow [SemVer](https://semver.org/).
 
+## [1.0.2] — 2026-07-06
+
+### Added
+- Press **⌘1–⌘9** in the popup to instantly paste the 1st–9th item without moving the selection.
+
 ## [1.0.1] — 2026-07-06
 
 ### Changed
@@ -24,5 +29,6 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions follow
 - In-app update checking with a menu-bar notification.
 - One-line installer, Homebrew cask, and a landing page.
 
+[1.0.2]: https://github.com/7757/FastCut/releases/tag/v1.0.2
 [1.0.1]: https://github.com/7757/FastCut/releases/tag/v1.0.1
 [1.0.0]: https://github.com/7757/FastCut/releases/tag/v1.0.0

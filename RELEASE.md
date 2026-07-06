@@ -41,6 +41,7 @@ Let **NEW** be the new version, e.g. `1.0.2`.
 - [ ] (Optional) Run the installer end-to-end: `curl -fsSL https://7757.github.io/FastCut/install.sh | bash`.
 
 ## Always
+- **All docs and release notes are in English.** The website marketing copy (`docs/`) is the only intentionally translated surface (en/zh/ja/ko); everything else — README (canonical), CHANGELOG, RELEASE, GitHub release notes, commit messages — is English.
 - Commits are authored by **musk only** — never add a `Co-Authored-By: Claude` trailer.
 - The app is self-signed (not notarized): the installer clears quarantine; manual `.app` downloads need right-click → Open on first launch.
 - Keep the four language versions (README `*.md` and website `docs/i18n.js`) in sync when copy changes.

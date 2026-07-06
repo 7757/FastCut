@@ -49,6 +49,13 @@ final class PopupModel: ObservableObject {
         onConfirm?(item)
     }
 
+    /// Paste the item at a specific position (used by ⌘1–⌘9 quick paste).
+    func confirmAt(_ index: Int) {
+        let items = current
+        guard index >= 0, index < items.count else { return }
+        onConfirm?(items[index])
+    }
+
     func deleteSelection() {
         let items = current
         guard let id = selectedID, let idx = items.firstIndex(where: { $0.id == id }) else { return }
@@ -142,6 +149,11 @@ final class PopupController: NSObject, NSWindowDelegate {
         removeKeyMonitor()
         keyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
             guard let self, self.panel.isVisible else { return event }
+            // ⌘1–⌘9 pastes the 1st–9th item directly.
+            if event.modifierFlags.contains(.command),
+               let ch = event.charactersIgnoringModifiers, let n = Int(ch), (1...9).contains(n) {
+                self.model.confirmAt(n - 1); return nil
+            }
             switch Int(event.keyCode) {
             case kVK_DownArrow:
                 self.model.move(1); return nil
