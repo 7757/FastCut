@@ -90,7 +90,35 @@ img { max-width: 100%; display: block; }
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a.link { color: var(--ink-2); font-weight: 500; font-size: 15px; transition: color .15s; }
 .nav-links a.link:hover { color: var(--ink); }
-.nav-cta { display: flex; align-items: center; gap: 14px; }
+.nav-cta { display: flex; align-items: center; gap: 12px; }
+
+/* Language switcher */
+.lang { position: relative; }
+.lang-btn { display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  background: transparent; border: 1px solid var(--line); border-radius: 999px;
+  padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink-2);
+  transition: border-color .15s, color .15s; }
+.lang-btn:hover { color: var(--ink); border-color: #d7dae3; }
+.lang-btn svg { width: 15px; height: 15px; }
+.lang-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 132px;
+  background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-lg);
+  padding: 6px; opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 60; }
+.lang:hover .lang-menu, .lang.open .lang-menu { opacity: 1; visibility: visible; transform: none; }
+.lang-menu button { display: block; width: 100%; text-align: left; background: transparent; border: 0;
+  cursor: pointer; padding: 8px 12px; border-radius: 8px; font: inherit; font-size: 14px; color: var(--ink-2); }
+.lang-menu button:hover { background: var(--bg-soft); color: var(--ink); }
+.lang-menu button.active { color: var(--brand-3); font-weight: 700; }
+
+/* Changelog */
+.changelog { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+.clog { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 26px; box-shadow: var(--shadow-sm); }
+.clog-ver { font-weight: 800; font-size: 16px; margin-bottom: 10px; display: flex; align-items: baseline; gap: 12px; }
+.clog-ver span { font-weight: 500; font-size: 12.5px; color: var(--muted); }
+.clog ul { margin: 0; padding-left: 20px; }
+.clog li { color: var(--ink-2); font-size: 14.5px; margin: 7px 0; }
+.clog-more { text-align: center; margin-top: 26px; }
+.clog-more a { color: var(--brand-3); font-weight: 600; }
 
 /* Hero */
 .hero { position: relative; padding: 150px 0 60px; text-align: center; overflow: hidden; }

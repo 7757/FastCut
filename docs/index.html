@@ -7,15 +7,15 @@
 <meta name="description" content="FastCut 是一款原生、轻量、开源的 macOS 剪贴板历史管理器。常驻菜单栏,一个快捷键唤起历史,文本 / 图片 / 链接搜一下就粘贴。">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
-<meta property="og:title" content="FastCut — 你的 Mac 剪贴板,快如闪电">
-<meta property="og:description" content="原生、轻量、开源的 macOS 剪贴板历史管理器。">
+<meta property="og:title" content="FastCut — a lightning-fast clipboard for macOS">
+<meta property="og:description" content="Native, lightweight, open-source clipboard-history manager for macOS.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="popup.png">
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
@@ -24,13 +24,26 @@
   <div class="wrap">
     <a class="brand" href="#top"><img src="assets/icon-64.png" alt="FastCut"> FastCut</a>
     <div class="nav-links">
-      <a class="link" href="#features">功能</a>
-      <a class="link" href="#keyboard">快捷键</a>
-      <a class="link" href="#download">下载</a>
+      <a class="link" href="#features" data-i18n="nav_features">功能</a>
+      <a class="link" href="#keyboard" data-i18n="nav_shortcuts">快捷键</a>
+      <a class="link" href="#changelog" data-i18n="nav_changelog">更新日志</a>
+      <a class="link" href="#download" data-i18n="nav_download">下载</a>
       <a class="link" href="https://github.com/7757/FastCut" target="_blank" rel="noopener">GitHub</a>
     </div>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="#download">免费下载</a>
+      <div class="lang" id="lang">
+        <button class="lang-btn" type="button" aria-haspopup="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+          <span id="lang-cur">中文</span>
+        </button>
+        <div class="lang-menu">
+          <button type="button" data-lang="en">English</button>
+          <button type="button" data-lang="zh">简体中文</button>
+          <button type="button" data-lang="ja">日本語</button>
+          <button type="button" data-lang="ko">한국어</button>
+        </div>
+      </div>
+      <a class="btn btn-primary" href="#download" data-i18n="btn_download">免费下载</a>
     </div>
   </div>
 </nav>
@@ -40,20 +53,20 @@
   <div class="glow a"></div>
   <div class="glow b"></div>
   <div class="wrap">
-    <span class="eyebrow reveal"><span class="dot"></span> 开源 · 原生 macOS · MIT 协议</span>
-    <h1 class="reveal">你的 Mac 剪贴板,<br><span class="gradient-text">快如闪电</span></h1>
-    <p class="sub reveal">常驻菜单栏,一个快捷键唤起剪贴板历史 —— 文本、图片、链接,搜一下,回车粘贴。<br>原生、轻量、开源,几乎无感。</p>
+    <span class="eyebrow reveal"><span class="dot"></span> <span data-i18n="hero_eyebrow">开源 · 原生 macOS · MIT 协议</span></span>
+    <h1 class="reveal" data-i18n="hero_h1">你的 Mac 剪贴板,<br><span class="gradient-text">快如闪电</span></h1>
+    <p class="sub reveal" data-i18n="hero_sub">常驻菜单栏,一个快捷键唤起剪贴板历史 —— 文本、图片、链接,搜一下,回车粘贴。<br>原生、轻量、开源,几乎无感。</p>
     <div class="actions reveal">
-      <a class="btn btn-primary btn-lg" href="#download">免费下载</a>
+      <a class="btn btn-primary btn-lg" href="#download" data-i18n="btn_download">免费下载</a>
       <a class="btn btn-ghost btn-lg" href="https://github.com/7757/FastCut" target="_blank" rel="noopener">
         <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-        在 GitHub 查看
+        <span data-i18n="btn_github_view">在 GitHub 查看</span>
       </a>
     </div>
-    <p class="meta reveal">适用于 macOS 14 或更高 · Apple Silicon · 免费</p>
+    <p class="meta reveal" data-i18n="hero_meta">适用于 macOS 14 或更高 · Apple Silicon · 免费</p>
 
     <div class="shot reveal">
-      <img src="popup.png" alt="FastCut 剪贴板历史弹窗 —— 搜索框与按类型区分的历史条目" width="900">
+      <img src="popup.png" alt="FastCut clipboard popup" width="900">
     </div>
   </div>
 </header>
@@ -62,21 +75,21 @@
 <section class="section-pad" id="features">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="kicker">功能</div>
-      <h2>小而快,恰到好处</h2>
-      <p>该有的一个不少,多余的一个不加。对标市面主流剪贴板工具,只留最常用的。</p>
+      <div class="kicker" data-i18n="feat_kicker">功能</div>
+      <h2 data-i18n="feat_h2">小而快,恰到好处</h2>
+      <p data-i18n="feat_p">该有的一个不少,多余的一个不加。对标市面主流剪贴板工具,只留最常用的。</p>
     </div>
   </div>
   <div class="marquee reveal">
     <div class="marquee-track" id="ftrack">
-      <article class="fcard"><h3>全局快捷键</h3><p>任意界面按 ⌘⇧V 唤起历史,快捷键可在偏好设置里自定义。</p></article>
-      <article class="fcard"><h3>智能类型识别</h3><p>链接、邮箱、文件路径、颜色值、数字自动分辨,一眼看清。</p></article>
-      <article class="fcard"><h3>键盘全操作</h3><p>输入即搜索,方向键选择,回车粘贴 —— 双手不离键盘。</p></article>
-      <article class="fcard"><h3>自动回贴</h3><p>选中即自动粘回你刚才所在的应用(需辅助功能权限)。</p></article>
-      <article class="fcard"><h3>文本 · 图片 · 文件</h3><p>复制什么都记得住,图片和复制的文件路径也一并保存。</p></article>
-      <article class="fcard"><h3>隐私优先</h3><p>自动忽略密码管理器标记的敏感内容,历史只存在你本机。</p></article>
-      <article class="fcard"><h3>原生轻量</h3><p>纯 Swift 打造,零第三方依赖,常驻菜单栏,几乎不占资源。</p></article>
-      <article class="fcard"><h3>开源免费</h3><p>MIT 协议,代码完全公开,欢迎 Star、提 Issue 或自己动手改。</p></article>
+      <article class="fcard"><h3 data-i18n="feat1_t">全局快捷键</h3><p data-i18n="feat1_d">任意界面按 ⌘⇧V 唤起历史,快捷键可在偏好设置里自定义。</p></article>
+      <article class="fcard"><h3 data-i18n="feat2_t">智能类型识别</h3><p data-i18n="feat2_d">链接、邮箱、文件路径、颜色值、数字自动分辨,一眼看清。</p></article>
+      <article class="fcard"><h3 data-i18n="feat3_t">键盘全操作</h3><p data-i18n="feat3_d">输入即搜索,方向键选择,回车粘贴 —— 双手不离键盘。</p></article>
+      <article class="fcard"><h3 data-i18n="feat4_t">自动回贴</h3><p data-i18n="feat4_d">选中即自动粘回你刚才所在的应用(需辅助功能权限)。</p></article>
+      <article class="fcard"><h3 data-i18n="feat5_t">文本 · 图片 · 文件</h3><p data-i18n="feat5_d">复制什么都记得住,图片和复制的文件路径也一并保存。</p></article>
+      <article class="fcard"><h3 data-i18n="feat6_t">隐私优先</h3><p data-i18n="feat6_d">自动忽略密码管理器标记的敏感内容,历史只存在你本机。</p></article>
+      <article class="fcard"><h3 data-i18n="feat7_t">原生轻量</h3><p data-i18n="feat7_d">纯 Swift 打造,零第三方依赖,常驻菜单栏,几乎不占资源。</p></article>
+      <article class="fcard"><h3 data-i18n="feat8_t">开源免费</h3><p data-i18n="feat8_d">MIT 协议,代码完全公开,欢迎 Star、提 Issue 或自己动手改。</p></article>
     </div>
   </div>
 </section>
@@ -85,16 +98,16 @@
 <section class="section-pad" id="keyboard" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="kicker">键盘驱动</div>
-      <h2>双手不离键盘</h2>
-      <p>唤起、搜索、选择、粘贴、删除,一整套流程都能用键盘完成。</p>
+      <div class="kicker" data-i18n="kbd_kicker">键盘驱动</div>
+      <h2 data-i18n="kbd_h2">双手不离键盘</h2>
+      <p data-i18n="kbd_p">唤起、搜索、选择、粘贴、删除,一整套流程都能用键盘完成。</p>
     </div>
     <div class="keys">
-      <div class="keyrow reveal"><kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd><span>唤起历史</span></div>
-      <div class="keyrow reveal"><kbd>↑</kbd><kbd>↓</kbd><span>选择</span></div>
-      <div class="keyrow reveal"><kbd>↩</kbd><span>粘贴</span></div>
-      <div class="keyrow reveal"><kbd>⌘</kbd><kbd>⇧</kbd><kbd>⌫</kbd><span>删除该条</span></div>
-      <div class="keyrow reveal"><kbd>⎋</kbd><span>关闭</span></div>
+      <div class="keyrow reveal"><kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd><span data-i18n="kbd_summon">唤起历史</span></div>
+      <div class="keyrow reveal"><kbd>↑</kbd><kbd>↓</kbd><span data-i18n="kbd_select">选择</span></div>
+      <div class="keyrow reveal"><kbd>↩</kbd><span data-i18n="kbd_paste">粘贴</span></div>
+      <div class="keyrow reveal"><kbd>⌘</kbd><kbd>⇧</kbd><kbd>⌫</kbd><span data-i18n="kbd_delete">删除该条</span></div>
+      <div class="keyrow reveal"><kbd>⎋</kbd><span data-i18n="kbd_close">关闭</span></div>
     </div>
   </div>
 </section>
@@ -103,38 +116,66 @@
 <section class="section-pad download" id="download">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="kicker">下载</div>
-      <h2>现在就装上 FastCut</h2>
-      <p>免费、开源,几秒钟搞定。</p>
+      <div class="kicker" data-i18n="dl_kicker">下载</div>
+      <h2 data-i18n="dl_h2">现在就装上 FastCut</h2>
+      <p data-i18n="dl_p">免费、开源,几秒钟搞定。</p>
     </div>
     <div class="dl-card reveal">
       <img class="os" src="assets/icon-192.png" alt="FastCut">
       <h3>FastCut for macOS</h3>
-      <div class="req">macOS 14 或更高 · Apple Silicon</div>
+      <div class="req" data-i18n="dl_req">macOS 14 或更高 · Apple Silicon</div>
 
       <div class="cmd">
         <code id="install-cmd">curl -fsSL https://7757.github.io/FastCut/install.sh | bash</code>
-        <button class="copy-btn" id="copy-btn" type="button">复制</button>
+        <button class="copy-btn" id="copy-btn" type="button" data-i18n="copy">复制</button>
       </div>
-      <div class="or"><span>或</span></div>
+      <div class="or"><span data-i18n="dl_or">或</span></div>
       <div class="actions">
-        <a class="btn btn-primary" href="https://github.com/7757/FastCut/releases/latest" target="_blank" rel="noopener">下载 .app</a>
+        <a class="btn btn-primary" href="https://github.com/7757/FastCut/releases/latest" target="_blank" rel="noopener" data-i18n="dl_appbtn">下载 .app</a>
         <a class="btn btn-ghost" href="https://github.com/7757/FastCut#-installation" target="_blank" rel="noopener">Homebrew</a>
-        <a class="btn btn-ghost" href="https://github.com/7757/FastCut#build" target="_blank" rel="noopener">源码构建</a>
+        <a class="btn btn-ghost" href="https://github.com/7757/FastCut#build" target="_blank" rel="noopener" data-i18n="dl_source">源码构建</a>
       </div>
-      <p class="note">一行命令自动下载、安装并启动。手动下载 .app 时,首次打开请<strong>右键 → 打开</strong>(应用为自签名)。</p>
+      <p class="note" data-i18n="dl_note">一行命令自动下载、安装并启动。手动下载 .app 时,首次打开请<strong>右键 → 打开</strong>(应用为自签名)。</p>
     </div>
+  </div>
+</section>
+
+<!-- CHANGELOG -->
+<section class="section-pad" id="changelog">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker" data-i18n="clog_kicker">更新日志</div>
+      <h2 data-i18n="clog_h2">持续更新中</h2>
+    </div>
+    <div class="changelog">
+      <article class="clog reveal">
+        <div class="clog-ver">v1.0.1 <span>2026-07-06</span></div>
+        <ul>
+          <li data-i18n="clog_101_1">更新检查改用 GitHub 重定向解析,不再受 API 速率限制,更稳定。</li>
+          <li data-i18n="clog_101_2">检查更新失败时提供「前往下载页」入口,不再是死胡同。</li>
+        </ul>
+      </article>
+      <article class="clog reveal">
+        <div class="clog-ver">v1.0.0 <span>2026-07-06</span></div>
+        <ul>
+          <li data-i18n="clog_100_1">首个版本:菜单栏剪贴板历史,全局快捷键唤起。</li>
+          <li data-i18n="clog_100_2">文本 / 图片 / 文件,按类型区分图标;键盘全操作;自动回贴。</li>
+          <li data-i18n="clog_100_3">隐私忽略密码内容;持久化;开机自启;应用内更新检查。</li>
+        </ul>
+      </article>
+    </div>
+    <p class="clog-more reveal"><a href="https://github.com/7757/FastCut/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-i18n="clog_more">查看完整更新日志 →</a></p>
   </div>
 </section>
 
 <!-- CTA -->
 <section style="padding:40px 0">
   <div class="cta reveal">
-    <h2>让复制粘贴,快如闪电。</h2>
-    <p>免费、开源、原生。给你的 Mac 装上更聪明的剪贴板。</p>
+    <h2 data-i18n="cta_h2">让复制粘贴,快如闪电。</h2>
+    <p data-i18n="cta_p">免费、开源、原生。给你的 Mac 装上更聪明的剪贴板。</p>
     <div class="actions">
-      <a class="btn btn-primary btn-lg" href="#download">免费下载</a>
-      <a class="btn btn-ghost btn-lg" href="https://github.com/7757/FastCut" target="_blank" rel="noopener">在 GitHub 查看</a>
+      <a class="btn btn-primary btn-lg" href="#download" data-i18n="btn_download">免费下载</a>
+      <a class="btn btn-ghost btn-lg" href="https://github.com/7757/FastCut" target="_blank" rel="noopener" data-i18n="btn_github_view">在 GitHub 查看</a>
     </div>
   </div>
 </section>
@@ -145,65 +186,55 @@
     <div class="foot">
       <div>
         <a class="brand" href="#top"><img src="assets/icon-64.png" alt="FastCut" style="width:28px;height:28px;border-radius:7px"> FastCut</a>
-        <p class="tag">原生、轻量、开源的 macOS 剪贴板历史管理器。</p>
-        <a class="author" href="https://github.com/7757" target="_blank" rel="noopener" title="作者 GitHub 主页">
+        <p class="tag" data-i18n="foot_tag">原生、轻量、开源的 macOS 剪贴板历史管理器。</p>
+        <a class="author" href="https://github.com/7757" target="_blank" rel="noopener" title="GitHub">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          作者 · musk
+          <span data-i18n="foot_author">作者 · musk</span>
         </a>
       </div>
       <div class="foot-cols">
         <div class="foot-col">
-          <h4>产品</h4>
-          <a href="#features">功能</a>
-          <a href="#keyboard">快捷键</a>
-          <a href="#download">下载</a>
+          <h4 data-i18n="foot_product">产品</h4>
+          <a href="#features" data-i18n="nav_features">功能</a>
+          <a href="#keyboard" data-i18n="nav_shortcuts">快捷键</a>
+          <a href="#changelog" data-i18n="nav_changelog">更新日志</a>
+          <a href="#download" data-i18n="nav_download">下载</a>
         </div>
         <div class="foot-col">
-          <h4>源码</h4>
-          <a href="https://github.com/7757/FastCut" target="_blank" rel="noopener">GitHub 仓库</a>
-          <a href="https://github.com/7757/FastCut/blob/main/LICENSE" target="_blank" rel="noopener">MIT 许可证</a>
-          <a href="https://github.com/7757/FastCut#build" target="_blank" rel="noopener">从源码构建</a>
+          <h4 data-i18n="foot_source">源码</h4>
+          <a href="https://github.com/7757/FastCut" target="_blank" rel="noopener" data-i18n="foot_repo">GitHub 仓库</a>
+          <a href="https://github.com/7757/FastCut/blob/main/LICENSE" target="_blank" rel="noopener" data-i18n="foot_license">MIT 许可证</a>
+          <a href="https://github.com/7757/FastCut/blob/main/CHANGELOG.md" target="_blank" rel="noopener" data-i18n="nav_changelog">更新日志</a>
         </div>
       </div>
     </div>
     <div class="copyright">
-      <span>© <span id="year">2026</span> FastCut · 基于 MIT 协议开源</span>
+      <span>© <span id="year">2026</span> FastCut · <span data-i18n="foot_copyright">基于 MIT 协议开源</span></span>
       <span><a href="https://github.com/7757/FastCut" target="_blank" rel="noopener">GitHub</a></span>
     </div>
   </div>
 </footer>
 
 <script>
-  // frosted nav "develops" in after scrolling begins
+  // frosted floating nav after scrolling begins
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 16);
   onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
 
-  // duplicate marquee cards so the auto-scroll loops seamlessly
+  // duplicate marquee cards for a seamless loop
   const track = document.getElementById('ftrack');
-  if (track) { track.setAttribute('aria-hidden', 'false'); track.innerHTML += track.innerHTML; }
+  if (track) track.innerHTML += track.innerHTML;
 
   // reveal on view
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = (Math.min(i % 8, 6) * 45) + 'ms';
-    io.observe(el);
-  });
-
-  // copy install command
-  const copyBtn = document.getElementById('copy-btn');
-  if (copyBtn) copyBtn.addEventListener('click', () => {
-    const cmd = document.getElementById('install-cmd').textContent;
-    navigator.clipboard.writeText(cmd).then(() => {
-      copyBtn.textContent = '已复制'; setTimeout(() => copyBtn.textContent = '复制', 1500);
-    }).catch(() => {});
+    el.style.transitionDelay = (Math.min(i % 8, 6) * 45) + 'ms'; io.observe(el);
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+<script src="i18n.js?v=5"></script>
 </body>
 </html>
