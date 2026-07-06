@@ -1,13 +1,20 @@
 import AppKit
 
-/// Checks the GitHub Releases API for a newer version and reports the result.
-/// No third-party dependencies, no silent replacement — it surfaces an update
-/// in the menu bar and can open the download page.
+/// Checks GitHub for a newer release and reports the result. No third-party
+/// dependencies and no silent replacement — it surfaces updates in the menu bar
+/// and can open the download page.
+///
+/// It reads the version from the `releases/latest` **redirect** (which lands on
+/// `/releases/tag/vX.Y.Z`) instead of the REST API, so it is not subject to the
+/// unauthenticated API rate limit.
 final class UpdateChecker {
     static let shared = UpdateChecker()
 
-    /// owner/repo used for the releases API.
+    /// owner/repo.
     private let repo = "7757/FastCut"
+
+    /// Where to send the user to download (official site).
+    let downloadPage = "https://7757.github.io/FastCut/#download"
 
     enum Outcome {
         case upToDate(current: String)
@@ -15,38 +22,38 @@ final class UpdateChecker {
         case failed
     }
 
-    private struct Release: Decodable {
-        let tag_name: String
-        let html_url: String
-    }
-
     var currentVersion: String {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0"
     }
 
-    /// Fetch the latest release and report on the main queue.
+    /// Fetch the latest version and report on the main queue.
     func check(userInitiated: Bool, completion: @escaping (Outcome) -> Void) {
-        guard let url = URL(string: "https://api.github.com/repos/\(repo)/releases/latest") else {
+        guard let url = URL(string: "https://github.com/\(repo)/releases/latest") else {
             DispatchQueue.main.async { completion(.failed) }
             return
         }
         var req = URLRequest(url: url, timeoutInterval: 15)
-        req.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
         req.setValue("FastCut-UpdateChecker", forHTTPHeaderField: "User-Agent")
 
-        URLSession.shared.dataTask(with: req) { [weak self] data, response, _ in
+        URLSession.shared.dataTask(with: req) { [weak self] _, response, error in
             guard let self else { return }
             let finish = { (o: Outcome) in DispatchQueue.main.async { completion(o) } }
 
-            guard let http = response as? HTTPURLResponse, http.statusCode == 200,
-                  let data, let release = try? JSONDecoder().decode(Release.self, from: data) else {
+            // URLSession follows the redirect; response.url is …/releases/tag/vX.Y.Z
+            guard error == nil,
+                  let finalURL = response?.url?.absoluteString,
+                  let range = finalURL.range(of: "/releases/tag/") else {
                 finish(.failed)
                 return
             }
-            let latest = Self.normalize(release.tag_name)
+            let tag = finalURL[range.upperBound...].split(separator: "/").first.map(String.init) ?? ""
+            let latest = Self.normalize(tag)
+            guard !latest.isEmpty else { finish(.failed); return }
+
             let current = Self.normalize(self.currentVersion)
             if Self.isVersion(latest, newerThan: current) {
-                finish(.updateAvailable(version: latest, url: release.html_url))
+                finish(.updateAvailable(version: latest,
+                                        url: "https://github.com/\(self.repo)/releases/latest"))
             } else {
                 finish(.upToDate(current: current))
             }

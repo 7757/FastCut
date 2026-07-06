@@ -220,7 +220,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                 self.refreshStatusIcon()
                 if userInitiated { self.infoAlert("已是最新版本", "当前 \(cur) 版本已是最新。") }
             case .failed:
-                if userInitiated { self.infoAlert("检查更新失败", "无法连接到 GitHub,请稍后再试。") }
+                if userInitiated {
+                    NSApp.activate(ignoringOtherApps: true)
+                    let alert = NSAlert()
+                    alert.messageText = "暂时无法自动检查更新"
+                    alert.informativeText = "连接 GitHub 失败(可能是网络问题)。你可以直接前往官网获取最新版本。"
+                    alert.addButton(withTitle: "前往下载页")
+                    alert.addButton(withTitle: "取消")
+                    if alert.runModal() == .alertFirstButtonReturn,
+                       let u = URL(string: UpdateChecker.shared.downloadPage) {
+                        NSWorkspace.shared.open(u)
+                    }
+                }
             }
         }
     }
