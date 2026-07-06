@@ -188,6 +188,11 @@ footer { padding: 60px 0 40px; }
 .foot { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
 .foot .brand { margin-bottom: 12px; }
 .foot .tag { color: var(--muted); font-size: 14px; max-width: 280px; }
+.foot .author { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+  color: var(--ink-2); font-size: 14px; font-weight: 600; transition: color .15s, transform .15s; }
+.foot .author img { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line); }
+.foot .author svg { width: 15px; height: 15px; color: var(--muted); }
+.foot .author:hover { color: var(--brand-3); }
 .foot-cols { display: flex; gap: 64px; flex-wrap: wrap; }
 .foot-col h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: 14px; }
 .foot-col a { display: block; color: var(--ink-2); font-size: 15px; margin-bottom: 10px; transition: color .15s; }
