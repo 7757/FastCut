@@ -2,6 +2,10 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · **한국어**
 
+[![Release](https://img.shields.io/github/v/release/7757/FastCut?color=ff8a2b&label=release)](https://github.com/7757/FastCut/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/7757/FastCut/total?color=ff8a2b&label=downloads)](https://github.com/7757/FastCut/releases)
+[![License](https://img.shields.io/github/license/7757/FastCut?color=ff8a2b)](LICENSE)
+
 가볍고 네이티브한 **macOS 클립보드 기록 관리자** — Maccy / Flycut 같은 도구의 군더더기 없는 대안입니다.
 메뉴 막대에 상주하며 복사한 내용을 기억하고, 전역 단축키로 기록을 다시 불러옵니다.
 

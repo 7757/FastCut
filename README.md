@@ -2,6 +2,10 @@
 
 **English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
+[![Release](https://img.shields.io/github/v/release/7757/FastCut?color=ff8a2b&label=release)](https://github.com/7757/FastCut/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/7757/FastCut/total?color=ff8a2b&label=downloads)](https://github.com/7757/FastCut/releases)
+[![License](https://img.shields.io/github/license/7757/FastCut?color=ff8a2b)](LICENSE)
+
 A lightweight native **macOS clipboard-history manager** — a small, no-frills alternative to
 tools like Maccy / Flycut. Lives in the menu bar, remembers what you copy, and brings the
 history back with a global hotkey.

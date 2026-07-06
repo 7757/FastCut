@@ -2,6 +2,10 @@
 
 [English](README.md) · **简体中文** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
+[![Release](https://img.shields.io/github/v/release/7757/FastCut?color=ff8a2b&label=release)](https://github.com/7757/FastCut/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/7757/FastCut/total?color=ff8a2b&label=downloads)](https://github.com/7757/FastCut/releases)
+[![License](https://img.shields.io/github/license/7757/FastCut?color=ff8a2b)](LICENSE)
+
 一款原生、轻量的 **macOS 剪贴板历史管理器** —— 类似 Maccy / Flycut 的极简替代品。常驻菜单栏,
 记住你复制过的内容,一个全局快捷键即可唤回历史。
 

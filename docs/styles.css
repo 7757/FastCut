@@ -177,6 +177,8 @@ section { position: relative; }
 .dl-card .os { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 16px; }
 .dl-card h3 { font-size: 22px; font-weight: 800; }
 .dl-card .req { color: var(--muted); font-size: 14px; margin-top: 8px; }
+.dl-card .dl-count { margin-top: 8px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.dl-card .dl-count #dl-n { color: var(--brand-3); }
 .dl-card .cmd {
   display: flex; align-items: center; gap: 10px; margin-top: 24px;
   background: #0f1218; border: 1px solid #1e2230; border-radius: 12px; padding: 11px 12px 11px 16px;
