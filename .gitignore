@@ -1,0 +1,14 @@
+# Build output
+FastCut.app/
+*.app/
+build/
+
+# macOS
+.DS_Store
+
+# Never commit signing material (private keys / certs / keychains)
+*.p12
+*.pem
+*.cer
+*.keychain
+*.keychain-db
