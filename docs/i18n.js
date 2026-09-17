@@ -2,8 +2,8 @@
 (function () {
   const I18N = {
     en: {
-      nav_features: "Features", nav_shortcuts: "Shortcuts", nav_changelog: "Changelog", nav_download: "Download",
-      btn_download: "Download",
+      nav_features: "Features", nav_shortcuts: "Shortcuts", nav_changelog: "Changelog", nav_download: "Download", nav_author: "About the creator",
+      btn_download: "Download", btn_author: "About the creator",
       hero_eyebrow: "Open source · Native macOS · MIT",
       hero_h1: 'Your Mac clipboard,<br><span class="gradient-text">at lightning speed</span>',
       hero_sub: "Lives in the menu bar; one hotkey brings your clipboard history back — text, images, links. Search, hit return, paste.<br>Native, lightweight, open source.",
@@ -40,8 +40,8 @@
       foot_repo: "Repository", foot_license: "MIT License", foot_copyright: "Open-source under MIT", visits_label: "views", stat_views: "views", stat_visitors: "visitors",
     },
     zh: {
-      nav_features: "功能", nav_shortcuts: "快捷键", nav_changelog: "更新日志", nav_download: "下载",
-      btn_download: "免费下载",
+      nav_features: "功能", nav_shortcuts: "快捷键", nav_changelog: "更新日志", nav_download: "下载", nav_author: "关于作者",
+      btn_download: "免费下载", btn_author: "关于作者",
       hero_eyebrow: "开源 · 原生 macOS · MIT 协议",
       hero_h1: '你的 Mac 剪贴板,<br><span class="gradient-text">快如闪电</span>',
       hero_sub: "常驻菜单栏,一个快捷键唤起剪贴板历史 —— 文本、图片、链接,搜一下,回车粘贴。<br>原生、轻量、开源,几乎无感。",
@@ -78,8 +78,8 @@
       foot_repo: "GitHub 仓库", foot_license: "MIT 许可证", foot_copyright: "基于 MIT 协议开源", visits_label: "次访问", stat_views: "浏览量", stat_visitors: "访客",
     },
     ja: {
-      nav_features: "機能", nav_shortcuts: "ショートカット", nav_changelog: "変更履歴", nav_download: "ダウンロード",
-      btn_download: "無料ダウンロード",
+      nav_features: "機能", nav_shortcuts: "ショートカット", nav_changelog: "変更履歴", nav_download: "ダウンロード", nav_author: "作者について",
+      btn_download: "無料ダウンロード", btn_author: "作者について",
       hero_eyebrow: "オープンソース · ネイティブ macOS · MIT",
       hero_h1: 'あなたの Mac のクリップボードを<br><span class="gradient-text">稲妻の速さで</span>',
       hero_sub: "メニューバーに常駐。ホットキー一つでクリップボード履歴を呼び出し —— テキスト、画像、リンク。検索して Enter で貼り付け。<br>ネイティブ、軽量、オープンソース。",
@@ -116,8 +116,8 @@
       foot_repo: "リポジトリ", foot_license: "MIT ライセンス", foot_copyright: "MIT ライセンスで公開", visits_label: "アクセス", stat_views: "ビュー", stat_visitors: "訪問者",
     },
     ko: {
-      nav_features: "기능", nav_shortcuts: "단축키", nav_changelog: "변경 이력", nav_download: "다운로드",
-      btn_download: "무료 다운로드",
+      nav_features: "기능", nav_shortcuts: "단축키", nav_changelog: "변경 이력", nav_download: "다운로드", nav_author: "만든 사람",
+      btn_download: "무료 다운로드", btn_author: "만든 사람",
       hero_eyebrow: "오픈소스 · 네이티브 macOS · MIT",
       hero_h1: '당신의 Mac 클립보드를<br><span class="gradient-text">번개처럼 빠르게</span>',
       hero_sub: "메뉴 막대에 상주하며, 단축키 하나로 클립보드 기록을 불러옵니다 —— 텍스트, 이미지, 링크. 검색하고 Enter로 붙여넣기.<br>네이티브, 가볍고, 오픈소스.",
